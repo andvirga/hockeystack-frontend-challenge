@@ -27,3 +27,12 @@ export interface TableRow {
     pageViews: number,
     visitors: number,
 }
+
+export type SortColumn = TableColumn | "none"
+
+export type SortDirection = "asc" | "desc" | "none";
+
+export type SortBy = {
+    column: SortColumn
+    direction: SortDirection
+}
