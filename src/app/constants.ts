@@ -42,3 +42,5 @@ export const TABLE_COLUMNS: TableColumn[] = [
         type: "number"
     }
 ]
+
+export const NUMBER_ROWS_PER_PAGE = 10;
