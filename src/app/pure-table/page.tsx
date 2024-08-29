@@ -8,8 +8,6 @@ export default async function Home() {
   const apiDataRows: DataRow[] = await apiData.json();
   const tableRows: TableRow[] = formatTableRows(apiDataRows);
 
-  console.log(">>> tableRows", tableRows);
-
   return (
     <main className="flex min-h-screen flex-col">
       <h1>HockeyStack Frontend Challenge</h1>
