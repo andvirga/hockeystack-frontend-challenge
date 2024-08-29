@@ -1,10 +1,17 @@
 import PureTable from "../components/PureTable";
+import { TABLE_COLUMNS } from "../constants";
+import { TableRow, DataRow } from "../types";
+import { formatTableRows } from "../utils";
 
-export default function Home() {
+export default async function Home() {
+  const apiData = await fetch("http://localhost:3000/api");
+  const apiDataRows: DataRow[] = await apiData.json();
+  const tableRows: TableRow[] = formatTableRows(apiDataRows);
+
   return (
     <main className="flex min-h-screen flex-col">
       <h1>HockeyStack Frontend Challenge</h1>
-      <PureTable />
+      <PureTable columns={TABLE_COLUMNS} rows={tableRows} />
     </main>
   );
 }
