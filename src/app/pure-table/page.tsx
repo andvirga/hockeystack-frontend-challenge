@@ -9,9 +9,9 @@ export default async function Home() {
   const tableRows: TableRow[] = formatTableRows(apiDataRows);
 
   return (
-    <main className="flex min-h-screen flex-col">
-      <h1>HockeyStack Frontend Challenge</h1>
+    <div className="container mx-auto">
+      <h1 className="text-3xl pt-8 pb-8">HockeyStack Frontend Challenge</h1>
       <PureTable columns={TABLE_COLUMNS} rows={tableRows} />
-    </main>
+    </div>
   );
 }

@@ -27,23 +27,25 @@ export const formatTableRows = (apiDataRows: DataRow[]): TableRow[] => {
   }));
 };
 
-export const formatCell = (col: TableColumn, row: TableRow): JSX.Element => {
+export const renderCell = (col: TableColumn, row: TableRow): JSX.Element => {
   switch (col.type) {
     case "percentage":
-      return <div>{row[col.key]}%</div>;
+      return <span>{row[col.key]}%</span>;
     case "time":
-      return <div>{formatTime(row["time"])}</div>;
+      return <span>{formatTime(row["time"])}</span>;
     case "url":
       return (
-        <div>
-          <a href={row["url"]} target="_blank">
-            {row["url"]}
-          </a>
-        </div>
+        <a
+          className="text-blue-600 visited:text-purple-600"
+          href={`http://${row["url"]}`}
+          target="_blank"
+        >
+          {row["url"]}
+        </a>
       );
     case "number":
     default:
-      return <div>{row[col.key]}</div>;
+      return <span>{row[col.key]}</span>;
   }
 };
 
