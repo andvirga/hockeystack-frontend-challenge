@@ -14,7 +14,7 @@ git clone https://github.com/andvirga/hockeystack-frontend-challenge
 yarn && yarn dev
 ```
 
-3. Open http://locahost:3000 to see the challenge.
+3. Open http://localhost:3000 to see the challenge.
 
 - Note: if this port is not available on your system, you can change its value on `.env.development` file using `APP_PORT` variable.
 
