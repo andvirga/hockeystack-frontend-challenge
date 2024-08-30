@@ -72,9 +72,14 @@ const PureTable = ({ columns, rows }: IPureTableProps): JSX.Element => {
 
   return (
     <div className="w-full">
-      <div className="flex flex-row items-center justify-between pb-4">
-        <div className="text-md text-white font-bold">Pure HTML Table</div>
-        <div id="paginator" className="flex flex-row gap-2 text-xl">
+      <div className="flex flex-row items-center justify-between p-4">
+        <div className="flex flex-row flex-wrap gap-2 text-white">
+          <div className="text-md font-bold">Pure Table</div>|
+          <a href="/library-table" className="text-md text-blue-400">
+            Library Table
+          </a>
+        </div>
+        <div id="paginator" className="flex flex-row gap-2 text-md">
           <button
             className="px-2 py-1 rounded-md bg-slate-900 disabled:opacity-50 text-white"
             onClick={handleDecreasePage}
@@ -141,8 +146,8 @@ const PureTable = ({ columns, rows }: IPureTableProps): JSX.Element => {
           </tbody>
         </table>
       </div>
-      <div className="flex flex-col gap-2">
-        <div className="flex flex-row justify-end pt-4">
+      <div className="flex flex-col gap-2 p-4">
+        <div className="flex flex-row justify-end">
           <div id="gotopage" className="flex flex-row gap-2 items-center">
             <p className="text-white">Go to page:</p>
             <input
