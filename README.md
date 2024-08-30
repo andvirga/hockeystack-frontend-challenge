@@ -1,6 +1,6 @@
-# Hockeystack Frontend Challenge
+# Hockeystack Frontend Challenge
 
-## Getting Started
+## Getting Started
 
 1. Clone this repository into a local folder.
 
@@ -18,16 +18,16 @@ yarn && yarn dev
 
 - Note: if this port is not available on your system, you can change its value on `.env.development` file using `APP_PORT` variable.
 
-## Debrief
+## Debrief
 
-### Trade offs
+### Trade-offs
 
 - The API returns the whole JSON on each request, this is fine for 500 rows, but it can be inefficient on large datasets.
 - Due to time constraints, only a Dark Mode theme was implemented, leaving the Light Mode for future development.
 - The transition between the Pure and Library tables is handled via links, but the Library Table can take several seconds to render fully.
 - Table layout was adjusted to ensure responsiveness on mobile devices, but this can be improved for a smoother user experience.
 
-### Improvements
+### Improvements
 
 - Implement server-side pagination to efficiently handle larger datasets, coupled with caching to reduce unnecessary API calls.
 - Add a Light/Dark mode toggle to enhance user accessibility and personalization.
