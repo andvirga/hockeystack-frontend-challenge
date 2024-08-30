@@ -15,7 +15,7 @@ export default async function Home() {
           <h1 className="text-2xl font-bold ">HockeyStack</h1>
         </div>
       </div>
-      <div className="container mx-auto pt-4">
+      <div className="container mx-auto">
         <PureTable columns={TABLE_COLUMNS} rows={tableRows} />
       </div>
     </div>

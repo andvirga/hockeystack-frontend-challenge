@@ -1,3 +1,4 @@
+import { GridColDef } from "@mui/x-data-grid";
 import {
   DataRow,
   SortColumn,
@@ -15,7 +16,8 @@ const formatTime = (seconds: number) => {
 };
 
 export const formatTableRows = (apiDataRows: DataRow[]): TableRow[] => {
-  return apiDataRows.map((row) => ({
+  return apiDataRows.map((row, index) => ({
+    id: `table_row_${index}`,
     url: row.url,
     scroll: row.avgScrollPercentage,
     time: row.totalPageviewCount,
@@ -80,4 +82,47 @@ export const renderSortIcon = (direction: SortDirection) => {
     case "asc":
       return <span>&#9651;</span>;
   }
+};
+
+export const getMUIColumns = (columns: TableColumn[]) => {
+  return columns.map((col, index) => {
+    let column: GridColDef = {
+      field: col.key,
+      headerName: col.label.toLocaleUpperCase(),
+      headerAlign: index !== 0 ? "center" : "left",
+      align: index !== 0 ? "center" : "left",
+      minWidth: 110,
+      flex: 1,
+      editable: false,
+      sortable: true,
+    };
+    if (col.type === "url") {
+      column = {
+        ...column,
+        minWidth: 400,
+        renderCell: (params) => (
+          <a
+            href={`http://${params.value}`}
+            target="_blank"
+            className="text-blue-400 visited:text-purple-400"
+          >
+            {params.value}
+          </a>
+        ),
+      };
+    }
+    if (col.type === "time") {
+      column = {
+        ...column,
+        renderCell: (params) => formatTime(params.value),
+      };
+    }
+    if (col.type === "percentage") {
+      column = {
+        ...column,
+        renderCell: (params) => `${params.value}%`,
+      };
+    }
+    return column;
+  });
 };
