@@ -1,13 +1,7 @@
 "use client";
 import React, { useCallback, useState } from "react";
-import {
-  SortBy,
-  SortColumn,
-  SortDirection,
-  TableColumn,
-  TableRow,
-} from "../types";
-import { NUMBER_ROWS_PER_PAGE } from "../constants";
+import { SortBy, SortColumn, TableColumn, TableRow } from "../types";
+import { NUMBER_ROWS_PER_PAGE, TOTAL_PAGES } from "../constants";
 import { renderCell, getSortDirection, renderSortIcon } from "../utils";
 import { usePaginatedRows } from "../hooks/usePaginatedRows";
 import { useSortedRows } from "../hooks/useSortedRows";
@@ -37,8 +31,8 @@ const PureTable = ({ columns, rows }: IPureTableProps): JSX.Element => {
   const handleGoToPageChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const pageTarget = Number(e.target.value);
-      if (pageTarget < 1 || pageTarget > 50) {
-        setPageError("Enter a page number between 1 and 50");
+      if (pageTarget < 1 || pageTarget > TOTAL_PAGES) {
+        setPageError(`Enter a page number between 1 and ${TOTAL_PAGES}`);
       } else {
         setPageError("");
         setGoToPage(pageTarget);
@@ -77,40 +71,40 @@ const PureTable = ({ columns, rows }: IPureTableProps): JSX.Element => {
   });
 
   return (
-    <div className="bg-white w-full">
-      <div className="flex flex-row align-center justify-between pb-4">
-        <div className="text-md">
-          <b>Pure HTML Table</b>
-        </div>
+    <div className="w-full">
+      <div className="flex flex-row items-center justify-between pb-4">
+        <div className="text-md text-white font-bold">Pure HTML Table</div>
         <div id="paginator" className="flex flex-row gap-2 text-xl">
           <button
-            className="px-2 py-1 rounded-md bg-white disabled:opacity-30"
+            className="px-2 py-1 rounded-md bg-slate-900 disabled:opacity-50 text-white"
             onClick={handleDecreasePage}
             disabled={page === 1}
           >
             &lt;
           </button>
-          <div className="flex items-center">
-            <b>{page}</b>
+          <div className="flex items-center text-white">
+            <p>
+              <b>{page}</b> / {TOTAL_PAGES}
+            </p>
           </div>
           <button
-            className="px-2 py-1 rounded-md bg-white disabled:opacity-30"
+            className="px-2 py-1 rounded-md bg-slate-900 disabled:opacity-50 text-white"
             onClick={handleIncreasePage}
-            disabled={page === 50}
+            disabled={page === TOTAL_PAGES}
           >
             &gt;
           </button>
         </div>
       </div>
       <div className="overflow-x-auto">
-        <table className="min-w-full">
-          <thead className="bg-gray-100">
+        <table className="min-w-full border border-slate-600">
+          <thead className="bg-slate-700">
             <tr>
               {columns.map((col, index) => (
                 <th
                   key={col.key}
                   onClick={() => handleColumnSort(col)}
-                  className={`text-sm h-18 p-4 cursor-pointer uppercase border-b border-gray-200 max-w-xs ${
+                  className={`text-sm text-white h-18 p-4 cursor-pointer uppercase border-b border-slate-600 max-w-xs ${
                     index !== 0 ? "text-center" : "text-left"
                   }`}
                 >
@@ -123,13 +117,18 @@ const PureTable = ({ columns, rows }: IPureTableProps): JSX.Element => {
           <tbody>
             {paginatedRows.map((row, idRow) => {
               return (
-                <tr key={`row_${idRow}`} className={`hover:bg-gray-100`}>
+                <tr
+                  key={`row_${idRow}`}
+                  className="h-[64px] hover:bg-slate-600"
+                >
                   {columns.map((col, idCol) => {
                     return (
                       <td
                         key={`cell_${idRow}_${idCol}`}
-                        className={`text-sm break-words border-b border-gray-200 p-4 max-w-xs ${
-                          idCol !== 0 ? "text-center" : "text-left"
+                        className={`text-white break-words border-b border-slate-600 px-4 max-w-xs h-[64px] ${
+                          idCol !== 0
+                            ? "text-center text-md"
+                            : "text-left text-sm"
                         }`}
                       >
                         {renderCell(col, row)}
@@ -145,24 +144,24 @@ const PureTable = ({ columns, rows }: IPureTableProps): JSX.Element => {
       <div className="flex flex-col gap-2">
         <div className="flex flex-row justify-end pt-4">
           <div id="gotopage" className="flex flex-row gap-2 items-center">
-            <p>Go to page:</p>
+            <p className="text-white">Go to page:</p>
             <input
-              className="w-16 px-2 py-1 border rounded-md text-center"
+              className="w-16 px-2 py-1 border rounded-md text-center text-white bg-slate-800 border-slate-700"
               type="number"
               onChange={handleGoToPageChange}
               min={1}
-              max={50}
+              max={TOTAL_PAGES}
             />
             <button
-              className="px-3 py-1 border rounded-md bg-gray-500 text-white hover:bg-gray-600 disabled:opacity-30"
+              className="px-3 py-1 border rounded-md bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50"
               disabled={!!pageError}
               onClick={handleGoToPage}
             >
-              Go!
+              OK
             </button>
           </div>
         </div>
-        <div className="flex justify-end text-sm text-red-500">{pageError}</div>
+        <div className="flex justify-end text-sm text-red-400">{pageError}</div>
       </div>
     </div>
   );

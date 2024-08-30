@@ -44,3 +44,5 @@ export const TABLE_COLUMNS: TableColumn[] = [
 ]
 
 export const NUMBER_ROWS_PER_PAGE = 10;
+
+export const TOTAL_PAGES = 50;
