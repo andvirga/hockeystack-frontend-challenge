@@ -9,7 +9,7 @@ export default async function Home() {
   const tableRows: TableRow[] = formatTableRows(apiDataRows);
 
   return (
-    <>
+    <div className="pb-4">
       <div className="bg-slate-600 text-white py-4">
         <div className="flex w-full justify-center">
           <h1 className="text-2xl font-bold ">HockeyStack</h1>
@@ -18,6 +18,6 @@ export default async function Home() {
       <div className="container mx-auto px-4">
         <LibraryTable rows={tableRows} columns={TABLE_COLUMNS} />
       </div>
-    </>
+    </div>
   );
 }
