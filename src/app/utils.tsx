@@ -36,7 +36,7 @@ export const renderCell = (col: TableColumn, row: TableRow): JSX.Element => {
     case "url":
       return (
         <a
-          className="text-blue-600 visited:text-purple-600"
+          className="text-blue-400 visited:text-purple-400"
           href={`http://${row["url"]}`}
           target="_blank"
         >

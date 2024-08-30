@@ -9,9 +9,15 @@ export default async function Home() {
   const tableRows: TableRow[] = formatTableRows(apiDataRows);
 
   return (
-    <div className="container mx-auto">
-      <h1 className="text-3xl pt-8 pb-8">HockeyStack Frontend Challenge</h1>
-      <PureTable columns={TABLE_COLUMNS} rows={tableRows} />
+    <div className="bg-slate-900 h-lvh">
+      <div className="bg-slate-600 text-white py-4">
+        <div className="flex w-full justify-center">
+          <h1 className="text-2xl font-bold ">HockeyStack</h1>
+        </div>
+      </div>
+      <div className="container mx-auto pt-4">
+        <PureTable columns={TABLE_COLUMNS} rows={tableRows} />
+      </div>
     </div>
   );
 }
