@@ -4,6 +4,7 @@ import React from "react";
 import { TableColumn, TableRow } from "../types";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { getMUIColumns } from "../utils";
+import { useMediaQuery } from "@mui/material";
 
 export interface ILibraryTableProps {
   columns: TableColumn[];
@@ -11,6 +12,7 @@ export interface ILibraryTableProps {
 }
 
 const LibraryTable = ({ columns, rows }: ILibraryTableProps): JSX.Element => {
+  const isMobile = useMediaQuery("(max-width:768px)");
   const darkMode = createTheme({
     palette: {
       mode: "dark",
@@ -28,7 +30,7 @@ const LibraryTable = ({ columns, rows }: ILibraryTableProps): JSX.Element => {
         </div>
         <DataGrid
           rows={rows}
-          columns={getMUIColumns(columns)}
+          columns={getMUIColumns(columns, isMobile)}
           rowHeight={64}
           initialState={{
             pagination: { paginationModel: { pageSize: 10 } },

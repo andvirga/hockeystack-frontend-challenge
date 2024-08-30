@@ -84,7 +84,7 @@ export const renderSortIcon = (direction: SortDirection) => {
   }
 };
 
-export const getMUIColumns = (columns: TableColumn[]) => {
+export const getMUIColumns = (columns: TableColumn[], isMobile: boolean) => {
   return columns.map((col, index) => {
     let column: GridColDef = {
       field: col.key,
@@ -99,7 +99,7 @@ export const getMUIColumns = (columns: TableColumn[]) => {
     if (col.type === "url") {
       column = {
         ...column,
-        minWidth: 400,
+        minWidth: isMobile ? 200 : 400,
         renderCell: (params) => (
           <a
             href={`http://${params.value}`}

@@ -79,7 +79,7 @@ const PureTable = ({ columns, rows }: IPureTableProps): JSX.Element => {
             Library Table
           </a>
         </div>
-        <div id="paginator" className="flex flex-row gap-2 text-md">
+        <div id="paginator" className="flex flex-row gap-1 text-md">
           <button
             className="px-2 py-1 rounded-md bg-slate-900 disabled:opacity-50 text-white"
             onClick={handleDecreasePage}
@@ -87,7 +87,7 @@ const PureTable = ({ columns, rows }: IPureTableProps): JSX.Element => {
           >
             &lt;
           </button>
-          <div className="flex items-center text-white">
+          <div className="flex items-center text-white text-nowrap">
             <p>
               <b>{page}</b> / {TOTAL_PAGES}
             </p>
